@@ -20,6 +20,12 @@ class UserService
     {
         return $this->userRepo->all();
     }
+
+    public function createUser(array $data)
+    {
+        return $this->userRepo->create($data);
+    }
+
     public function findUserById($id)
     {
         return $this->userRepo->find($id);
@@ -29,14 +35,14 @@ class UserService
         return $this->userRepo->findByEmail($email);
     }
 
-    public function createUser(array $data)
+    public function searchUsers(string $searchTerm)
     {
-        return $this->userRepo->create($data);
+        return $this->userRepo->search($searchTerm);
     }
 
-    public function updateRole(User $user, array $data)
+    public function updateUser(User $user, array $data)
     {
-        return $this->userRepo->update($data);
+        return $this->userRepo->update($user, $data);
     }
 
     public function deleteUser(User $user)

@@ -12,6 +12,11 @@
             return User::all();
         }
 
+        public function create(array $data)
+        {
+            return User::create($data);
+        }
+
         public function findById($id)
         {
             return User::findOrFail($id);
@@ -22,9 +27,11 @@
             return User::where('email', $email)->first();
         }
 
-        public function create(array $data)
+        public function search(string $searchTerm)
         {
-            return User::create($data);
+        return User::where('name', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
+                    ->get();
         }
 
         public function update(User $user, array $data)
