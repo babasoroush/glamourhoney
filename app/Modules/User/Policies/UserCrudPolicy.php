@@ -22,12 +22,12 @@ class UserPolicy
         return false;
     }
 
-    public function view(User $user, User $model): bool
+    public function show(User $user, User $model): bool
     {
         return false;
     }
 
-    public function create(User $user): bool
+    public function store(User $user): bool
     {
         return false;
     }

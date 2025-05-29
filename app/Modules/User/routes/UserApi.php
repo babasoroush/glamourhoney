@@ -11,8 +11,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('api/profile', [userProfileController::class, 'updateProfile'])->name('profile.update');
 
 
-    Route::get('api/users/search', [userCrudController::class, 'search'])->name('users.search');
-    Route::resource('api/users', userCrudController::class)->except(['create', 'edit']);
+    Route::get('api/users/search', [userCrudController::class, 'search'])
+
+    ->name('users.search');
+    Route::resource('api/users', userCrudController::class)
+
+    ->except(['create', 'edit']);
 
 });
 
