@@ -28,7 +28,7 @@ class UserService
 
     public function findUserById($id)
     {
-        return $this->userRepo->find($id);
+        return $this->userRepo->findById($id);
     }
     public function FindUserByEmail($email)
     {
@@ -47,6 +47,6 @@ class UserService
 
     public function deleteUser(User $user)
     {
-        return $this->userRepo->delete();
+        return $this->userRepo->delete($user);
     }
 }

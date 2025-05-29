@@ -23,5 +23,11 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->loadRoutesFrom(__DIR__ . '/../routes/UserApi.php');
+        Gate::define('index', [AdminManagerPolicy::class, 'index']);
+        Gate::define('store', [AdminManagerPolicy::class, 'store']);
+        Gate::define('show', [AdminManagerPolicy::class, 'show']);
+        Gate::define('update', [AdminManagerPolicy::class, 'update']);
+        Gate::define('destroy', [AdminManagerPolicy::class, 'destroy']);
+        Gate::define('search', [AdminManagerPolicy::class, 'search']);
     }
 }

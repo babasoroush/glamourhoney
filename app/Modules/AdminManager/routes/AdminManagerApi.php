@@ -4,15 +4,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Modules\AdminManager\Http\Controllers\AdminController;
 
+Route::middleware(['auth:sanctum'])->group(function () {
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/api/makeadmin', [AdminController::class, 'assignRole']);
-});
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/api/removeadmin', [AdminController::class, 'revokeRole']);
-});
+    Route::prefix('api/admin-manager')->group(function () {
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/api/alladmins', [AdminController::class, 'getAllAdmins']);
+        Route::post('/assign-role', [AdminController::class, 'assignRole'])
+            ->middleware('can:assignRole')
+            ->name('admin.assign-role');
+
+        Route::post('/revoke-role', [AdminController::class, 'revokeRole'])
+            ->middleware('can:revokeRole')
+            ->name('admin.revoke-role');
+
+        Route::get('/all-admins', [AdminController::class, 'getAllAdmins'])
+            ->middleware('can:viewAllAdmins')
+            ->name('admin.all-admins');
+    });
 });

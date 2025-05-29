@@ -9,7 +9,7 @@
     {
         public function all()
         {
-            return User::all();
+            return User::paginate(10);
         }
 
         public function create(array $data)
@@ -19,7 +19,7 @@
 
         public function findById($id)
         {
-            return User::findOrFail($id);
+            return User::find($id);
         }
 
         public function findByEmail($email)

@@ -21,7 +21,7 @@ class userCrudController extends Controller
 
     public function index()
     {
-        $users = $this->userService->getAllUsers()->paginate(10);
+        $users = $this->userService->getAllUsers();
 
         return $this->success(200, 'لیست کاربران.', ['users' => $users]);
     }
@@ -81,6 +81,10 @@ class userCrudController extends Controller
 
     public function destroy(string $id)
     {
+        if ((string)$id === '1') {
+            return $this->error(403, 'شما اجازه حذف ادمین اصلی را ندارید.');
+        }
+
         $user = $this->userService->findUserById($id);
 
         if (!$user) {

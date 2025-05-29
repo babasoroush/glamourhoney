@@ -15,7 +15,15 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (Throwable $e, $request) {
+            $code = $e instanceof HttpException ? $e->getStatusCode() : 500;
+            $message = $e->getMessage() ?: 'An unexpected error occurred';
+
+            return response()->json([
+                'status' => 'error',
+                'message' => $message,
+            ], $code);
+        });
     })->create();
 
 // ----------------------------------------------------

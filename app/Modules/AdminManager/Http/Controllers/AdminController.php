@@ -45,6 +45,10 @@ class AdminController extends Controller
 
         $user = $this->userService->FindUserByEmail($request->email);
 
+        if ($user->id === 1) {
+            return $this->error(403, 'شما اجازه حذف ادمین اصلی را ندارید.');
+        }
+
         if (!$user->roles()->where('role_id', $role->id)->exists()) {
             return $this->error(404, 'این کاربر از قبل نقش مورد نظر را ندارد!');
         }
