@@ -2,9 +2,12 @@
 
 namespace App\Modules\User\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use App\Modules\User\Repositories\UserRepository;
 use App\Modules\User\Repositories\UserRepositoryInterface;
+use App\Modules\User\Policies\UserCrudPolicy;
+
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -23,11 +26,11 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         $this->loadRoutesFrom(__DIR__ . '/../routes/UserApi.php');
-        Gate::define('index', [AdminManagerPolicy::class, 'index']);
-        Gate::define('store', [AdminManagerPolicy::class, 'store']);
-        Gate::define('show', [AdminManagerPolicy::class, 'show']);
-        Gate::define('update', [AdminManagerPolicy::class, 'update']);
-        Gate::define('destroy', [AdminManagerPolicy::class, 'destroy']);
-        Gate::define('search', [AdminManagerPolicy::class, 'search']);
+        Gate::define('index', [UserCrudPolicy::class, 'index']);
+        Gate::define('store', [UserCrudPolicy::class, 'store']);
+        Gate::define('show', [UserCrudPolicy::class, 'show']);
+        Gate::define('update', [UserCrudPolicy::class, 'update']);
+        Gate::define('destroy', [UserCrudPolicy::class, 'destroy']);
+        Gate::define('search', [UserCrudPolicy::class, 'search']);
     }
 }

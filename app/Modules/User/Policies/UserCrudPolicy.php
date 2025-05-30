@@ -3,17 +3,17 @@
 namespace App\Modules\User\Policies;
 
 use App\Modules\User\Models\User;
+use App\Modules\AdminManager\Models\Role;
+use Illuminate\Support\Facades\Log;
 
-class UserPolicy
+class UserCrudPolicy
 {
 
     public function before(User $user, string $ability)
     {
-
         if ($user->hasRole('owner')) {
             return true;
         }
-
         return null;
     }
 
@@ -22,7 +22,7 @@ class UserPolicy
         return false;
     }
 
-    public function show(User $user, User $model): bool
+    public function show(User $user): bool
     {
         return false;
     }
@@ -32,16 +32,13 @@ class UserPolicy
         return false;
     }
 
-    public function update(User $user, User $model): bool
+    public function update(User $user): bool
     {
         return false;
     }
 
-    public function delete(User $user, User $model): bool
+    public function destroy(User $user): bool
     {
-        if ($model->id === 1) {
-            return false;
-        }
         return false;
     }
 

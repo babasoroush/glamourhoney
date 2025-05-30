@@ -12,11 +12,23 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::get('api/users/search', [userCrudController::class, 'search'])
-
+    ->middleware('can:search')
     ->name('users.search');
-    Route::resource('api/users', userCrudController::class)
-
-    ->except(['create', 'edit']);
+    Route::get('api/users', [userCrudController::class, 'index'])
+    ->middleware('can:index')
+    ->name('users.index');
+    Route::post('api/users', [userCrudController::class, 'store'])
+    ->middleware('can:store')
+    ->name('users.store');
+    Route::get('api/users/{id}', [userCrudController::class, 'show'])
+    ->middleware('can:show')
+    ->name('users.show');
+    Route::put('api/users/{id}', [userCrudController::class, 'update'])
+    ->middleware('can:update')
+    ->name('users.update');
+    Route::delete('api/users/{id}', [userCrudController::class, 'destroy'])
+    ->middleware('can:destroy')
+    ->name('users.destroy');
 
 });
 
