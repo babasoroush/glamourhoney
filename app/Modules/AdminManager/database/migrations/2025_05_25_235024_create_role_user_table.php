@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('role_id')->constrained()->onDelete('cascade');
             $table->primary(['user_id', 'role_id']);
             $table->timestamps();
+            $table->softDeletes('deleted_at', precision: 0);
         });
     }
 
