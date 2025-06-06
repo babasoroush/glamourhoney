@@ -5,5 +5,6 @@ return [
     App\Modules\User\Providers\UserServiceProvider::class,
     App\Modules\Auth\Providers\AuthServiceProvider::class,
     App\Modules\AdminManager\Providers\AdminManagerServiceProvider::class,
-    App\Modules\Media\Providers\MediaServiceProvider::class,
+    App\Modules\Common\Providers\CommonServiceProvider::class,
+    App\Modules\Blog\Providers\BlogServiceProvider::class,
 ];

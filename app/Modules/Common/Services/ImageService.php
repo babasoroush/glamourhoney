@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\Media\Services;
+namespace App\Modules\Common\Services;
 
 
-use App\Modules\Media\Repositories\ImageRepositoryInterface;
+use App\Modules\Common\Repositories\ImageRepositoryInterface;
 
 
 class ImageService

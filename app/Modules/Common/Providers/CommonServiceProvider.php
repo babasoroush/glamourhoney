@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Modules\Media\Providers;
+namespace App\Modules\Common\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Modules\Media\Repositories\ImageRepository;
-use App\Modules\Media\Repositories\ImageRepositoryInterface;
 
 
-class MediaServiceProvider extends ServiceProvider
+
+class CommonServiceProvider extends ServiceProvider
 {
     public function register (): void
     {
